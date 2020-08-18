@@ -1,0 +1,133 @@
+{% extends "base0.html" %}
+{% load static %}
+
+{% block content %}
+    <!--====== Breadcrumb Part Start ======-->
+
+    <div class="breadcrumb-area">
+        <div class="container-fluid custom-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Shop</li>
+                </ol>
+            </nav>
+        </div> <!-- container -->
+    </div>
+
+    <!--====== Breadcrumb Part Ends ======-->
+
+    <!--====== Shop Left sidebar Part Start ======-->
+
+    <section class="shop-area pt-20">
+        <div class="container-fluid custom-container">
+            <div class="row">
+                <div class="col-lg-24">
+                        <div class="tab-pane fade show active">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-4 col-sm-6">
+                                    {% for item in object_list %}
+                                    <div class="single-product">
+                                        <div class="product-image">
+                                            <a href="{{ item.get_absolute_url }}">
+                                                <img class="first-image" src="{{ item.image.url }}" alt="product">
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <p>{{ item.get_category_display }}</p>
+                                            <h4 class="product-title"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h4>
+<!--                                             <ul class="product-rating">
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                                <li><i class="fas fa-star"></i></li>
+                                            </ul>  -->                                           
+                                            <div class="product-price">
+                                                <span class="price-sale">{{ item.price }}</span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div> <!-- single product -->
+                                </div>
+                            </div> <!-- row -->
+                        </div>
+
+                    {% if is_paginated %}
+                    <ul class="pagination justify-content-center mt-30">
+                        {% if page_obj.has_previous %}
+                            <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fal fa-chevron-left"></i></a></li>
+                        {% endif %}
+                        <li class="active"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                        {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}"><i class="fal fa-chevron-right"></i></a></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== Shop Left sidebar Part Ends ======-->
+
+
+    <!--====== Features Banner Part Start ======-->
+
+    <section class="features-banner-area pt-80 pb-100">
+        <div class="container-fluid custom-container">
+            <div class="features-banner-wrapper d-flex flex-wrap">
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="{% static 'assets/images/banner-icon/icon1.png' %}" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">Free Shipping</h3>
+                        <p>Free shipping on all US order</p>
+                    </div>
+                </div> <!-- single features banner -->
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="{% static 'assets/images/banner-icon/icon2.png' %}" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">Support 24/7</h3>
+                        <p>Contact us 24 hours a day</p>
+                    </div>
+                </div> <!-- single features banner -->
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="{% static 'assets/images/banner-icon/icon3.png' %}" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">100% Money Back</h3>
+                        <p>You have 30 days to Return</p>
+                    </div>
+                </div> <!-- single features banner -->
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="{% static 'assets/images/banner-icon/icon4.png' %}" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">90 Days Return</h3>
+                        <p>If goods have problems</p>
+                    </div>
+                </div> <!-- single features banner -->
+                <div class="single-features-banner d-flex">
+                    <div class="banner-icon">
+                        <img src="{% static 'assets/images/banner-icon/icon5.png' %}" alt="Icon">
+                    </div>
+                    <div class="banner-content media-body">
+                        <h3 class="banner-title">Payment Secure</h3>
+                        <p>We ensure secure payment</p>
+                    </div>
+                </div> <!-- single features banner -->
+            </div> <!-- features banner wrapper -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== Features Banner Part Ends ======-->
+
+
+
+{% endblock content %}

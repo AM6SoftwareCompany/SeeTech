@@ -1,0 +1,528 @@
+{% load static %}
+{% load cart_template_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!--====== Title ======-->
+    {% if title %}
+    <title>SEE Tech | {{ title }}</title>
+    {% else %}
+    <title>SEE Tech</title>
+    {% endif %}
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/png">
+
+
+    <!-- CSS
+	======================================== -->
+
+    <!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
+    
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/fontawesome.min.css' %}">
+
+    <!--===== Plugins CSS (All Plugins Files) =====-->
+    
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/default.css' %}">
+
+    <!--====== Main Style CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+
+<body>
+
+    <!--====== PRELOADER PART START ======-->
+
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!--====== PRELOADER PART ENDS ======-->
+
+    <!--====== Header Part Start ======-->
+
+    <header class="header-area">
+        <div class="desktop-nav d-none d-lg-block">
+            <div class="header-nav">
+                <div class="container-fluid custom-container">
+                    <div class="header-nav-wrapper d-flex justify-content-between">
+                        <div class="header-static-nav">
+                            <p>All Electronics is here <span class="text">The Cheapest price!</span> see-tech</p>
+                        </div>
+                        <div class="header-menu-nav">
+                            <ul class="menu-nav">
+                            {% if request.user.is_authenticated %}
+                                <li><a href="#">Account</a></li>
+                                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">Sign in</a></li>
+                                <li><a href="{% url 'account_signup' %}">Register</a></li>
+                            {% endif %}
+                                <!-- <li>
+                                    <div class="dropdown">
+                                        <button type="button" id="langue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> English <i class="icon ion-chevron-down"></i></button>
+
+                                        <ul class="dropdown-menu" aria-labelledby="langue">
+                                            <li><a href="#"> English</a></li>
+                                            <li><a href="#"> Arabic</a></li>
+                                        </ul>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div> <!-- header menu nav -->
+                    </div> <!-- header nav wrapper -->
+                </div> <!-- container -->
+            </div> <!-- header nav -->
+
+            <div class="header-middle">
+                <div class="container-fluid custom-container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="header-logo-contact d-flex  ">
+                                <div class="desktop-logo">
+                                    <a href="{% url 'core:home' %}">
+                                        <img src="{% static 'assets/images/see-tech.png' %}" alt="Logo">
+                                    </a>
+                                </div> <!-- desktop logo -->
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="header-search-cart  d-flex align-items-center">
+                                <div class="header-contact d-flex align-items-center">
+                                    <i class="icon ion-ios-telephone-outline"></i>
+                                    <div class="phone media-body">
+                                        <p>24/7 Support</p>
+                                        <a href="tel:+201011282303">+20 101 128 2303</a>
+                                    </div>
+                                </div>
+                                <div class="header-search media-body">
+                                    <form action="#">
+                                        <div class="search-category">
+                                            <select>
+                                                <option value="0">All categories</option>
+                                            </select>
+                                        </div>
+                                        <input type="text" placeholder="Enter your search key ... ">
+                                        <button><i class="icon ion-android-search"></i></button>
+                                    </form>
+                                </div>
+                                <div class="header-cart">
+                                    <div class="cart-btn">
+                                        <a href="#">
+                                        {% if request.user.is_authenticated %}
+                                            <i class="icon ion-bag"></i>
+                                            <span class="text">Cart :</span>
+                                            {% if object.get_total %}
+                                            <span class="total">{{ object.get_total }}</span>
+                                            {% endif %}
+                                            <span class="count">{{ request.user|cart_item_count }}</span>
+                                        {% else %}
+                                            <i class="icon ion-bag"></i>
+                                            <span class="text">Cart :</span>
+                                            <span class="total">0</span>
+                                            <span class="count">0</span>
+                                        {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="mini-cart">
+                                        <ul class="cart-items">
+                                            <li>
+                                                <div class="single-cart-item d-flex">
+                                                    {% for order_item in object.items.all %}
+                                                    <div class="cart-item-thumb">
+                                                        <a href="single-product.html"><img src="{% static 'assets/images/product-cart/cart-1.jpg' %}" alt="product"></a>
+                                                        <span class="product-quantity">{{ order_item.quantity }}</span>
+                                                    </div>
+                                                    <div class="cart-item-content media-body">
+                                                        <h5 class="product-name"><a href="single-product.html">{{ order_item.item.title }}</a></h5>
+                                                        <span class="product-price">{{ order_item.item.price }}</span>
+                                                        <a href="#" class="product-close"><i class="fal fa-times"></i></a>
+                                                    </div>
+                                                    {% empty %}
+                                                        <h4>Your cart is empty</h4>
+                                                    {% endfor %}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="price_content">
+                                            {% if object.get_total %}
+                                            <div class="cart-subtotals">
+                                                <div class="products price_inline">
+                                                    <span class="label">Subtotal</span>
+                                                    <span class="value">{{ object.get_total }}</span>
+                                                </div>
+                                                <div class="shipping price_inline">
+                                                    <span class="label">Shipping</span>
+                                                    <span class="value">???</span>
+                                                </div>
+                                            </div>
+                                            <div class="cart-total price_inline">
+                                                <span class="label">Total</span>
+                                                <span class="value">€37.80</span>
+                                            </div>
+                                            {% endif %}
+                                        </div> <!-- price content -->
+                                        <div class="checkout text-center">
+                                            <a href="{% url 'core:checkout' %}" class="main-btn">Checkout</a>
+                                        </div>
+                                    </div> <!-- mini cart -->
+                                </div>
+                            </div> <!-- header search cart -->
+                        </div>
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </div> <!-- header middle -->
+
+            <div class="header-menu">
+                <div class="container-fluid custom-container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="header-menu-vertical">
+                                <h4 class="menu-title">
+                                    <span>Shop by</span>
+                                    Department
+                                </h4>
+                                <ul class="menu-content menu-expand">
+                                    <li class="menu-item">
+                                        <a href="#">Laptop <i class="fal fa-chevron-right"></i></a>
+                                        <ul class="sub-menu flex-wrap">
+                                            <li>
+                                                <a href="#"><span>Hot Categories</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="#">Dresses</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Outerwear & Jackets</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="#">Basic Jackets</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <img src="{% static 'assets/images/banner-image.png' %}" alt="">
+                                            </li>
+                                        </ul> <!-- sub menu -->
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#">Computer <i class="fal fa-chevron-right"></i></a>
+                                        <ul class="sub-menu flex-wrap">
+                                            <li>
+                                                <a href="#"><span>Accessories & Parts</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="#">Cables & Adapters</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Audio & Video</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="#">Televisions</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#"><span>Camera & Photo</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="#">Digital Cameras</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul> <!-- sub menu -->
+                                    </li>
+                                    <ul>
+                                    <li class="menu-item"><a href="#">Smartphone</a></li>
+
+                                </ul> <!-- menu content -->
+                            </div> <!-- header menu vertical -->
+                        </div>
+
+                        <div class="col-lg-9 position-static">
+                            <div class="header-horizontal-menu">
+                                <ul class="menu-content">
+                                    <li class="active"><a href="{% url 'core:home' %}">Home </a></li>
+                                    <li><a href="#footer">Contact Us</a></li>
+                                </ul>
+                            </div> <!-- header horizontal menu -->
+                        </div>
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </div> <!-- header menu -->
+        </div> <!-- desktop nav -->
+
+        <div class="mobile-nav d-lg-none">
+            <div class="container-fluid">
+                <div class="mobile-nav-top">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4 col-3">
+                            <div class="mobile-toggle">
+                                <a class="mobile-menu-open" href="javascript:;"><i class="fal fa-bars"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-5">
+                            <div class="mobile-logo text-center">
+                                <a href="{% url 'core:home' %}">
+                                    <img src="{% static 'assets/images/see-tech.png' %}" alt="Logo">
+                                </a>
+                            </div> <!-- mobile logo -->
+                        </div>
+                        <div class="col-sm-4  col-4">
+                            <div class="mobile-account-cart">
+                                <ul class="account-cart text-right">
+                                    <li>
+                                        <div class="dropdown">
+                                            <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fal fa-user"></i></button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                {% if request.user.is_authenticated %}
+                                                    <li><a href="#">Account</a></li>
+                                                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                                                {% else %}
+                                                    <li><a href="{% url 'account_login' %}">Sign in</a></li>
+                                                    <li><a href="{% url 'account_signup' %}">Register</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="header-cart">
+                                        <a href="#">
+                                            <i class="fal fa-shopping-cart"></i>
+                                            <span>{{ request.user|cart_item_count }}</span>
+                                        </a>
+                                        <div class="mini-cart">
+                                            <ul class="cart-items">
+                                                <li>
+                                                    <div class="single-cart-item d-flex">
+                                                        {% for order_item in object.items.all %}
+                                                        <div class="cart-item-thumb">
+                                                            <a href="single-product.html"><img src="{{ order_item.image.url }}" alt="product"></a>
+                                                            <span class="product-quantity">{{ order_item.quantity }}</span>
+                                                        </div>
+                                                        <div class="cart-item-content media-body">
+                                                            <h5 class="product-name"><a href="single-product.html">{{ order_item.item.title }}</a></h5>
+                                                            <span class="product-price">{{ order_item.item.price }}</span>
+                                                            <a href="#" class="product-close"><i class="fal fa-times"></i></a>
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div class="price_content">
+                                                {% if object.get_total %}
+                                                <div class="cart-subtotals">
+                                                    <div class="products price_inline">
+                                                        <span class="label">Subtotal</span>
+                                                        <span class="value">{{ object.get_total }}</span>
+                                                    </div>
+                                                    <div class="shipping price_inline">
+                                                        <span class="label">Shipping</span>
+                                                        <span class="value">???</span>
+                                                    </div>
+                                                </div>
+                                                <div class="cart-total price_inline">
+                                                    <span class="label">Total</span>
+                                                    <span class="value">€37.80</span>
+                                                </div>
+                                                {% endif %}
+                                            </div> <!-- price content -->
+                                            <div class="checkout text-center">
+                                                <a href="{% url 'core:checkout' %}" class="main-btn">Checkout</a>
+                                            </div>
+                                        </div> <!-- mini cart -->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!-- row -->
+                </div> <!-- mobile nav top -->
+
+                <div class="header-search">
+                    <form action="#">
+                        <div class="search-category">
+                            <select>
+                                <option value="0">All categories</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Enter your search key ... ">
+                        <button><i class="icon ion-android-search"></i></button>
+                    </form>
+                </div>
+            </div> <!-- container -->
+
+            <div class="mobile-off-canvas-menu">
+
+                <div class="mobile-canvas-close close-mobile-menu">
+                    <p>Menu <i class="fal fa-arrow-left"></i></p>
+                </div>
+
+                <div class="mobile-main-menu">
+                    <ul class="menu-content">
+                        <li class="active"><a href="{% url 'core:home' %}">Home </a></li>
+                        <li><a href="#footer">Contact</a></li>
+                    </ul>
+
+                    <ul class="menu-content">
+                        <li class="menu-item-has-children">
+                            <a href="#">Laptop <i class="fal fa-chevron-right"></i></a>
+                            <ul class="sub-menu">
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>Hot Categories</span></a>
+                                    <ul class="submenu-item ">
+                                        <li><a href="#">Dresses</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>Outerwear & Jackets</span></a>
+                                    <ul class="submenu-item ">
+                                        <li><a href="#">Basic Jackets</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <img src="{% static 'assets/images/banner-image.png' %}" alt="">
+                                </li>
+                            </ul> <!-- sub menu -->
+                        </li>
+                        <li class="menu-item-has-children">
+                            <a href="#">Computer <i class="fal fa-chevron-right"></i></a>
+                            <ul class="sub-menu">
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>Accessories & Parts</span></a>
+                                    <ul class="submenu-item">
+                                        <li><a href="#">Cables & Adapters</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>Audio & Video</span></a>
+                                    <ul class="submenu-item ">
+                                        <li><a href="#">Televisions</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>Camera & Photo</span></a>
+                                    <ul class="submenu-item ">
+                                        <li><a href="#">Digital Cameras</a></li>
+                                    </ul>
+                                </li>
+                            </ul> <!-- sub menu -->
+                        </li>
+                        <li><a href="#">Smartphone</a></li>
+                    </ul> <!-- menu content -->
+                </div> <!-- mobile main menu -->
+            </div> <!-- mobile off canvas menu -->
+            <div class="overlay"></div>
+        </div> <!-- mobile nav -->
+    </header>
+
+    <!--====== Header Part Ends  ======-->
+<!-- ===================================================================================================== -->
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% block content %}
+    {% endblock content %}
+
+
+    <!--====== Footer Part Start ======-->
+
+    <section class="footer-area bg_cover" id="footer" style="background-image: url({% static 'assets/images/bg-footer.jpg' %})">
+        <div class="footer-widget pt-30 pb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-contact mt-50">
+                            <h4 class="footer-title">Contact Details</h4>
+
+                            <ul>
+                                <li><i class="fas fa-map-marker-alt"></i>15 El Naser Street, El Reah, Banha,Egypt</li>
+                                <li><i class="fas fa-phone"></i><a href="tel:+201011282303">+20 101 128 2303</a></li>
+                                <li><i class="fas fa-envelope"></i><a href="mailto://eng.esam2036@gmail.com">eng.esam2036@gmail.com</a></li>
+                                <li><i class="far fa-clock"></i> Saturday-thursday 10:00 AM - 10:00 PM friday:Closed</li>
+                            </ul>
+                        </div> <!-- footer contact -->
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="footer-link-wrapper d-flex flex-wrap justify-content-between"> 
+                            <div class="footer-link mt-50">
+                                <h4 class="footer-title">Soical Media</h4>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/seetech20/" style="color: white" target="_blank"><i class="fab fa-facebook-f"> Facebook Page</i></a></li>
+                                    <br>
+                                    <li><a target="_blank" href="https://www.facebook.com/groups/737602696763037/" style="color: white"><i class="fab fa-facebook-square"> Facebook Group</i></a></li>
+                                    <br>
+                                    <li><a target="_blank" href="https://wa.me/201011282303" style="color: white"><i class="fab fa-whatsapp"> WhatsApp</i></a></li>
+                                    <br>
+                                    <li><a href="#" style="color: white"><i class="fab fa-instagram"> Instagram</i></a></li>
+                                </ul>
+                                
+                            </div> <!-- footer link -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d746.6175415646175!2d31.178757829186218!3d30.473096154712604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDI4JzIzLjEiTiAzMcKwMTAnNDUuNSJF!5e1!3m2!1sen!2seg!4v1597417282852!5m2!1sen!2seg" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div> <!-- footer link wrapper -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- footer widget -->
+
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="footer-copyright-payment text-center d-lg-flex justify-content-between align-items-center">
+                    <div class="copyright-text">
+                        <p>Copyright <script>document.write(new Date().getFullYear());</script> &copy; <a href="https://am6.tech/" target="_blank">AM6</a> . All Rights Reserved</p>
+                    </div>
+                </div>
+            </div> <!-- container -->
+        </div> <!-- footer copyright -->
+    </section>
+
+    <!--====== Footer Part Ends ======-->
+    
+    <!--====== BACK TOP TOP PART START ======-->
+
+    <a href="#" class="back-to-top"><i class="ion-android-arrow-up"></i></a>
+
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+
+
+
+    <!--====== Vendors js ======-->
+    <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/modernizr-3.7.1.min.js' %}"></script>
+
+    <!--====== Plugins js ======-->
+    <script src="{% static 'assets/js/plugins/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/slick.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/jquery-ui.min.js' %}"></script>
+
+    <!--====== Main Activation js ======-->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+    
+
+</body>
+
+
+</html>
