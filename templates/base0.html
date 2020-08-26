@@ -73,16 +73,6 @@
                                 <li><a href="{% url 'account_login' %}">Sign in</a></li>
                                 <li><a href="{% url 'account_signup' %}">Register</a></li>
                             {% endif %}
-                                <!-- <li>
-                                    <div class="dropdown">
-                                        <button type="button" id="langue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> English <i class="icon ion-chevron-down"></i></button>
-
-                                        <ul class="dropdown-menu" aria-labelledby="langue">
-                                            <li><a href="#"> English</a></li>
-                                            <li><a href="#"> Arabic</a></li>
-                                        </ul>
-                                    </div>
-                                </li> -->
                             </ul>
                         </div> <!-- header menu nav -->
                     </div> <!-- header nav wrapper -->
@@ -126,58 +116,21 @@
                                         <a href="#">
                                         {% if request.user.is_authenticated %}
                                             <i class="icon ion-bag"></i>
-                                            <span class="text">Cart :</span>
-                                            {% if object.get_total %}
-                                            <span class="total">{{ object.get_total }}</span>
-                                            {% endif %}
+                                            <span class="text">Cart </span>
                                             <span class="count">{{ request.user|cart_item_count }}</span>
                                         {% else %}
                                             <i class="icon ion-bag"></i>
-                                            <span class="text">Cart :</span>
+                                            <span class="text">Cart </span>
                                             <span class="total">0</span>
                                             <span class="count">0</span>
                                         {% endif %}
                                         </a>
                                     </div>
                                     <div class="mini-cart">
-                                        <ul class="cart-items">
-                                            <li>
-                                                <div class="single-cart-item d-flex">
-                                                    {% for order_item in object.items.all %}
-                                                    <div class="cart-item-thumb">
-                                                        <a href="single-product.html"><img src="{% static 'assets/images/product-cart/cart-1.jpg' %}" alt="product"></a>
-                                                        <span class="product-quantity">{{ order_item.quantity }}</span>
-                                                    </div>
-                                                    <div class="cart-item-content media-body">
-                                                        <h5 class="product-name"><a href="single-product.html">{{ order_item.item.title }}</a></h5>
-                                                        <span class="product-price">{{ order_item.item.price }}</span>
-                                                        <a href="#" class="product-close"><i class="fal fa-times"></i></a>
-                                                    </div>
-                                                    {% empty %}
-                                                        <h4>Your cart is empty</h4>
-                                                    {% endfor %}
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="price_content">
-                                            {% if object.get_total %}
-                                            <div class="cart-subtotals">
-                                                <div class="products price_inline">
-                                                    <span class="label">Subtotal</span>
-                                                    <span class="value">{{ object.get_total }}</span>
-                                                </div>
-                                                <div class="shipping price_inline">
-                                                    <span class="label">Shipping</span>
-                                                    <span class="value">???</span>
-                                                </div>
-                                            </div>
-                                            <div class="cart-total price_inline">
-                                                <span class="label">Total</span>
-                                                <span class="value">€37.80</span>
-                                            </div>
-                                            {% endif %}
-                                        </div> <!-- price content -->
                                         <div class="checkout text-center">
+                                            <button type="button" class="btn btn-info"><a href="{% url 'core:order-summary' %}" style="color: white;">Show My order</a></button>
+                                            <br>
+                                            <hr>
                                             <a href="{% url 'core:checkout' %}" class="main-btn">Checkout</a>
                                         </div>
                                     </div> <!-- mini cart -->

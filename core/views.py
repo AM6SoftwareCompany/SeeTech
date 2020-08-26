@@ -37,7 +37,7 @@ def is_valid_form(values):
     return valid
 
 
-class CheckoutView(View):
+class CheckoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
@@ -66,7 +66,7 @@ class CheckoutView(View):
             if billing_address_qs.exists():
                 context.update(
                     {'default_billing_address': billing_address_qs[0]})
-            return render(self.request, "check.html", context)
+            return render(self.request, "checkout.html", context)
         except ObjectDoesNotExist:
             messages.info(self.request, "You do not have an active order")
             return redirect("core:checkout")
