@@ -8,15 +8,15 @@
     <section class="slider-area slider-active">
         <div class="single-slider">
             <div class="slider-image">
-                <img src="{% static 'assets/images/slider-1.jpg' %}" alt="slider">
+                <img src="{% static 'assets/images/slider-2.jpg' %}" alt="slider">
             </div>
             <div class="slider-content-wrapper">
                 <div class="container-fluid custom-container">
                     <div class="slider-content">
-                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Save $120 when you buy</h4>
-                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>2020 Virtual Reality </span> Fulldive VR.</h1>
-                        <p data-animation="fadeInRightBig" data-delay="0.5s">Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>
+                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">{{ elitebookghp.get_category_display }}</h4>
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ elitebookghp.title }} </span></h1>
+                        <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ elitebookghp.get_absolute_url }}">Buy Now</a>
                     </div>
                 </div> <!-- container -->
             </div>
@@ -27,11 +27,11 @@
             </div>
             <div class="slider-content-wrapper">
                 <div class="container-fluid custom-container">
-                    <div class="slider-content">
-                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Save $120 when you buy</h4>
-                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>4K HDR Smart TV 43 </span> Sony Bravia.</h1>
-                        <p data-animation="fadeInRightBig" data-delay="0.5s">Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>
+                   <div class="slider-content">
+                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">{{ hpprodesktower.get_category_display }}</h4>
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ hpprodesktower.title }} </span></h1>
+                        <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ hpprodesktower.get_absolute_url }}">Buy Now</a>
                     </div>
                 </div> <!-- container -->
             </div>
@@ -55,13 +55,13 @@
             <div class="row category-active">
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:LP' %}">
                             <img src="{% static 'assets/images/category-1.jpg' %}" alt="category">
                             <p>Laptop</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:C' %}">
                             <img src="{% static 'assets/images/category-2.jpg' %}" alt="category">
                             <p>Computer</p>
                         </a>
@@ -69,13 +69,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:P' %}">
                             <img src="{% static 'assets/images/category-3.jpg' %}" alt="category">
                             <p>Smartphone</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:CA' %}">
                             <img src="{% static 'assets/images/category-4.jpg' %}" alt="category">
                             <p>PC accessories</p>
                         </a>
@@ -83,13 +83,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:PA' %}">
                             <img src="{% static 'assets/images/category-5.jpg' %}" alt="category">
                             <p>Phone Accessories</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:T' %}">
                             <img src="{% static 'assets/images/category-6.jpg' %}" alt="category">
                             <p>Televisions</p>
                         </a>
@@ -97,13 +97,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:PS' %}">
                             <img src="{% static 'assets/images/category-7.jpg' %}" alt="category">
                             <p>Printers & Scanners</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:MW' %}">
                             <img src="{% static 'assets/images/category-8.jpg' %}" alt="category">
                             <p>Men Watches</p>
                         </a>
@@ -117,7 +117,7 @@
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:CM' %}">
                             <img src="{% static 'assets/images/category-10.jpg' %}" alt="category">
                             <p>Camera</p>
                         </a>
@@ -125,13 +125,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:AD' %}">
                             <img src="{% static 'assets/images/category-11.jpg' %}" alt="category">
                             <p> Audio </p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:SR' %}">
                             <img src="{% static 'assets/images/category-12.jpg' %}" alt="category">
                             <p>Satellite Receivers</p>
                         </a>
@@ -139,13 +139,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:TA' %}">
                             <img src="{% static 'assets/images/category-6.jpg' %}" alt="category">
                             <p>TV accessories</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:TB' %}">
                             <img src="{% static 'assets/images/category-3.jpg' %}" alt="category">
                             <p>Tablet</p>
                         </a>
@@ -153,13 +153,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:WA' %}">
                             <img src="{% static 'assets/images/category-11.jpg' %}" alt="category">
                             <p>Women accessories</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:WW' %}">
                             <img src="{% static 'assets/images/category-8.jpg' %}" alt="category">
                             <p>Women Watches</p>
                         </a>
@@ -167,13 +167,13 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:PJ' %}">
                             <img src="{% static 'assets/images/category-12.jpg' %}" alt="category">
                             <p>Projectors</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
-                        <a target="_blank" href="shop-left-sidebar.html">
+                        <a target="_blank" href="{% url 'core:MA' %}">
                             <img src="{% static 'assets/images/category-8.jpg' %}" alt="category">
                             <p>Men accessories</p>
                         </a>

@@ -18,26 +18,25 @@ class OrderAdmin(admin.ModelAdmin):
                     'ordered',
                     'being_delivered',
                     'received',
-                    # 'refund_requested',
-                    # 'refund_granted',
+                    'refund_requested',
+                    'refund_granted',
                     'shipping_address',
-                    'billing_address'
-                    # 'payment',
-                    # 'coupon'
+                    'billing_address',
+                    'payment',
+                    'coupon'
                     ]
     list_display_links = [
         'user',
         'shipping_address',
-        'billing_address'
-        # 'payment',
-        # 'coupon'
+        'billing_address',
+        'payment',
+        'coupon'
     ]
     list_filter = ['ordered',
                    'being_delivered',
-                   'received'
-                   # 'refund_requested',
-                   # 'refund_granted'
-                   ]
+                   'received',
+                   'refund_requested',
+                   'refund_granted']
     search_fields = [
         'user__username',
         'ref_code'
@@ -57,6 +56,7 @@ class AddressAdmin(admin.ModelAdmin):
     ]
     list_filter = ['default', 'address_type', 'country']
     search_fields = ['user', 'street_address', 'apartment_address', 'zip']
+
 
 class ItemAdmin(admin.ModelAdmin):
     view_on_site = False

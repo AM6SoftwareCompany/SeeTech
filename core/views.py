@@ -36,8 +36,42 @@ def is_valid_form(values):
             valid = False
     return valid
 
+class CheckView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        form = CheckoutForm()
+        context = {
+            'form': form
+        }
+        return render(self.request, 'checkout.html', context)
 
-class CheckoutView(LoginRequiredMixin, View):
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                street_address = form.cleaned_data.get('street_address')
+                apartment_address = form.cleaned_data.get('apartment_address')
+                country = form.cleaned_data.get('country')
+                zip_code = form.cleaned_data.get('zip_code')
+                address = Address(
+                    user=self.request.user,
+                    street_address=street_address,
+                    apartment_address=apartment_address,
+                    country=country,
+                    zip_code=zip_code
+                    )
+                order.address = address
+                order.save()
+                return redirect('core:home')
+            messages.warning(self.request, 'Failed Checkout')
+            return redirect('core:checkout')
+
+        except ObjectDoesNotExist:
+            messages.error(self.request, 'You do NOT have an active order')
+            return redirect('core:order_summary')
+        
+
+class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
@@ -72,7 +106,7 @@ class CheckoutView(LoginRequiredMixin, View):
             return redirect("core:checkout")
 
     def post(self, *args, **kwargs):
-        form = CheckoutForm(self.request.POST)
+        form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
@@ -123,12 +157,10 @@ class CheckoutView(LoginRequiredMixin, View):
                         if set_default_shipping:
                             shipping_address.default = True
                             shipping_address.save()
-                            return redirect('core:home')
 
                     else:
                         messages.info(
                             self.request, "Please fill in the required shipping address fields")
-                        return redirect('core:checkout')
 
                 use_default_billing = form.cleaned_data.get(
                     'use_default_billing')
@@ -188,28 +220,25 @@ class CheckoutView(LoginRequiredMixin, View):
                         if set_default_billing:
                             billing_address.default = True
                             billing_address.save()
-                            return redirect('core:home')
 
                     else:
                         messages.info(
                             self.request, "Please fill in the required billing address fields")
                         return redirect('core:checkout')
 
+                payment_option = form.cleaned_data.get('payment_option')
 
-                # payment_option = form.cleaned_data.get('payment_option')
-
-                # if payment_option == 'S':
-                #     return redirect('core:payment', payment_option='stripe')
-                # elif payment_option == 'P':
-                #     return redirect('core:payment', payment_option='paypal')
-                # else:
-                #     messages.warning(
-                #         self.request, "Invalid payment option selected")
-                #     return redirect('core:checkout')
-
+                if payment_option == 'S':
+                    return redirect('core:payment', payment_option='stripe')
+                elif payment_option == 'P':
+                    return redirect('core:payment', payment_option='paypal')
+                else:
+                    messages.warning(
+                        self.request, "Invalid payment option selected")
+                    return redirect('core:checkout')
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
-            return redirect("core:home")
+            return redirect("core:order-summary")
 
 
 class PaymentView(View):
@@ -357,6 +386,177 @@ class ShopView(ListView):
     template_name = "shop.html"
 
 
+
+class PView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='P')
+
+
+
+
+class TBView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='TB')
+
+
+
+
+class PAView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='PA')
+
+
+
+
+class CView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='C')
+
+
+
+
+class LPView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='LP')
+
+
+
+
+class CAView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='CA')
+
+
+
+
+class PSView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='PS')
+
+
+
+
+class TView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='T')
+
+
+
+class SRView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='SR')
+
+
+
+
+
+class PJView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='PJ')
+
+
+
+
+class ADView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='AD')
+
+
+
+
+class TAView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='TA')
+
+
+
+
+class CMView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='CM')
+
+
+
+
+class MWView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='MW')
+
+
+
+
+class WWView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='WW')
+
+
+
+
+class MAView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='MA')
+
+
+
+
+class WAView(ListView):
+    paginate_by = 9
+    template_name = 'shop.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(category='WA')
+
+
+
+
 def index(request):
     all = Item.objects.all()
     first = all[0]
@@ -374,12 +574,16 @@ def index(request):
     thirteenth = all[12]
     fourteenth = all[13]
 
+    elitebookghp = Item.objects.filter(slug='hp-elitebook-745-g3')[0]
+    hpprodesktower = Item.objects.filter(slug='hp-prodesk-600-g1-tower')[0]
+
     template_name = 'index.html'
 
     user = request.user
     context = {'first':first, "second":second,"third":third, 'forth':forth, 'fifth':fifth,
     'sixth':sixth, 'seventh':seventh, 'eighth':eighth, 'ninth':ninth, 'tenth':tenth,
-     'eleventh':eleventh, 'twelfth':twelfth, 'thirteenth':thirteenth,'fourteenth':fourteenth
+     'eleventh':eleventh, 'twelfth':twelfth, 'thirteenth':thirteenth,'fourteenth':fourteenth,
+     'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower
      }
 
     return render(request, template_name, context)
