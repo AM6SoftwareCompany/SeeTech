@@ -7,9 +7,23 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
+    ('P', 'Phone'),               #
+    ('TB', 'Tablet'),             #
+    ('PA', 'Phone accessories'),  #
+    ('C', 'Computer'),            #
+    ('LP', 'Laptop'),             #
+    ('CA', 'PC accessories'),     #
+    ('PS', 'Printer & Scanner'),  #
+    ('T', 'Television'),          #
+    ('SR', 'Satellite Receiver'), #
+    ('PJ', 'Projector'),          #
+    ('AD', 'Audio'),              #
+    ('TA', 'TV accessories'),     #
+    ('CM', 'Camera'),             #
+    ('MW', 'Men Watch'),          #
+    ('WW', 'Women Watch'),        #
+    ('MA', 'Men accessories'),    #
+    ('WA', 'Women accessories')   #
 )
 
 LABEL_CHOICES = (
@@ -39,7 +53,6 @@ class Item(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
     image = models.ImageField()

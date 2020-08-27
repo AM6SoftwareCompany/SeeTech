@@ -72,7 +72,7 @@ class CheckoutView(LoginRequiredMixin, View):
             return redirect("core:checkout")
 
     def post(self, *args, **kwargs):
-        form = CheckoutForm(self.request.POST or None)
+        form = CheckoutForm(self.request.POST)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
@@ -123,10 +123,12 @@ class CheckoutView(LoginRequiredMixin, View):
                         if set_default_shipping:
                             shipping_address.default = True
                             shipping_address.save()
+                            return redirect('core:home')
 
                     else:
                         messages.info(
                             self.request, "Please fill in the required shipping address fields")
+                        return redirect('core:checkout')
 
                 use_default_billing = form.cleaned_data.get(
                     'use_default_billing')
@@ -186,21 +188,25 @@ class CheckoutView(LoginRequiredMixin, View):
                         if set_default_billing:
                             billing_address.default = True
                             billing_address.save()
+                            return redirect('core:home')
 
                     else:
                         messages.info(
                             self.request, "Please fill in the required billing address fields")
+                        return redirect('core:checkout')
 
-                payment_option = form.cleaned_data.get('payment_option')
 
-                if payment_option == 'S':
-                    return redirect('core:payment', payment_option='stripe')
-                elif payment_option == 'P':
-                    return redirect('core:payment', payment_option='paypal')
-                else:
-                    messages.warning(
-                        self.request, "Invalid payment option selected")
-                    return redirect('core:checkout')
+                # payment_option = form.cleaned_data.get('payment_option')
+
+                # if payment_option == 'S':
+                #     return redirect('core:payment', payment_option='stripe')
+                # elif payment_option == 'P':
+                #     return redirect('core:payment', payment_option='paypal')
+                # else:
+                #     messages.warning(
+                #         self.request, "Invalid payment option selected")
+                #     return redirect('core:checkout')
+
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:home")
@@ -347,7 +353,7 @@ class PaymentView(View):
 
 class ShopView(ListView):
     model = Item
-    paginate_by = 12
+    paginate_by = 9
     template_name = "shop.html"
 
 

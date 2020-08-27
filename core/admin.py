@@ -59,6 +59,7 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 class ItemAdmin(admin.ModelAdmin):
+    view_on_site = False
     search_fields = ['title', 'description']
     list_display = ['title', 'price']
     prepopulated_fields = {"slug": ("title",)}
