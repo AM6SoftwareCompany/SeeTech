@@ -71,7 +71,7 @@ class CheckView(LoginRequiredMixin, View):
             return redirect('core:order_summary')
         
 
-class CheckoutView(View):
+class CheckoutView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
