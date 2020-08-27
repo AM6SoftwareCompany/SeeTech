@@ -7,23 +7,23 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('P', 'Phone'),               #
-    ('TB', 'Tablet'),             #
-    ('PA', 'Phone accessories'),  #
-    ('C', 'Computer'),            #
-    ('LP', 'Laptop'),             #
-    ('CA', 'PC accessories'),     #
-    ('PS', 'Printer & Scanner'),  #
-    ('T', 'Television'),          #
-    ('SR', 'Satellite Receiver'), #
-    ('PJ', 'Projector'),          #
-    ('AD', 'Audio'),              #
-    ('TA', 'TV accessories'),     #
-    ('CM', 'Camera'),             #
-    ('MW', 'Men Watch'),          #
-    ('WW', 'Women Watch'),        #
-    ('MA', 'Men accessories'),    #
-    ('WA', 'Women accessories')   #
+    ('P', 'Phone'),               ##
+    ('TB', 'Tablet'),             ##
+    ('PA', 'Phone accessories'),  ##
+    ('C', 'Computer'),            ##
+    ('LP', 'Laptop'),             ##
+    ('CA', 'PC accessories'),     ##
+    ('PS', 'Printer & Scanner'),  ##
+    ('T', 'Television'),          ##
+    ('SR', 'Satellite Receiver'), ##
+    ('PJ', 'Projector'),          ##
+    ('AD', 'Audio'),              ##
+    ('TA', 'TV accessories'),     ##
+    ('CM', 'Camera'),             ##
+    ('MW', 'Men Watch'),          ##
+    ('WW', 'Women Watch'),        ##
+    ('MA', 'Men accessories'),    ##
+    ('WA', 'Women accessories')   ##
 )
 
 LABEL_CHOICES = (

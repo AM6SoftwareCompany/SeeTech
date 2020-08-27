@@ -152,18 +152,26 @@
                                 </h4>
                                 <ul class="menu-content menu-expand">
                                     <li class="menu-item">
-                                        <a href="#">Laptop <i class="fal fa-chevron-right"></i></a>
+                                        <a href="#">Electronics <i class="fal fa-chevron-right"></i></a>
                                         <ul class="sub-menu flex-wrap">
                                             <li>
-                                                <a href="#"><span>Hot Categories</span></a>
+                                                <a href="#"><span>PC & Laptop</span></a>
                                                 <ul class="submenu-item ">
-                                                    <li><a href="#">Dresses</a></li>
+                                                    <li><a href="{% url 'core:C' %}">Computer</a></li>
+                                                    <li><a href="{% url 'core:LP' %}">Laptop</a></li>
+                                                    <li><a href="{% url 'core:PS' %}">Printer & Scanner</a></li>
+                                                    <li><a href="{% url 'core:CA' %}">PC accessories</a></li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#"><span>Outerwear & Jackets</span></a>
+                                                <a href="#"><span>TVs & Others</span></a>
                                                 <ul class="submenu-item ">
-                                                    <li><a href="#">Basic Jackets</a></li>
+                                                    <li><a href="{% url 'core:T' %}">Television</a></li>
+                                                    <li><a href="{% url 'core:SR' %}">Satellite Receiver</a></li>
+                                                    <li><a href="{% url 'core:AD' %}">Audio</a></li>
+                                                    <li><a href="{% url 'core:PJ' %}">Projector</a></li>
+                                                    <li><a href="{% url 'core:CM' %}">Camera</a></li>
+                                                    <li><a href="{% url 'core:TA' %}">TV accessories</a></li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -172,30 +180,46 @@
                                         </ul> <!-- sub menu -->
                                     </li>
                                     <li class="menu-item">
-                                        <a href="#">Computer <i class="fal fa-chevron-right"></i></a>
+                                        <a href="#">Phone & Tablet <i class="fal fa-chevron-right"></i></a>
                                         <ul class="sub-menu flex-wrap">
                                             <li>
-                                                <a href="#"><span>Accessories & Parts</span></a>
+                                                <a href="#"><span>Hot Categories</span></a>
                                                 <ul class="submenu-item ">
-                                                    <li><a href="#">Cables & Adapters</a></li>
+                                                    <li><a href="{% url 'core:P' %}">Phone</a></li>
+                                                    <li><a href="{% url 'core:TB' %}">Tablet</a></li>
+                                                    <li><a href="{% url 'core:PA' %}">Phone accessories</a></li>
+                                                </ul>
+                                            </li>
+                                            <li></li>
+                                            <li>
+                                                <img src="{% static 'assets/images/category-3.jpg' %}" alt="">
+                                            </li>
+                                        </ul> <!-- sub menu -->
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="#">Watches & Jewellery <i class="fal fa-chevron-right"></i></a>
+                                        <ul class="sub-menu flex-wrap">
+                                            <li>
+                                                <a href="#"><span>Men</span></a>
+                                                <ul class="submenu-item ">
+                                                    <li><a href="{% url 'core:MW' %}"></a>Watches</li>
+                                                    <li><a href="{% url 'core:MA' %}"></a>Accessories</li>
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#"><span>Audio & Video</span></a>
+                                                <a href="#"><span>Women</span></a>
                                                 <ul class="submenu-item ">
-                                                    <li><a href="#">Televisions</a></li>
+                                                    <li><a href="{% url 'core:WW' %}"></a>Watches</li>
+                                                    <li><a href="{% url 'core:WA' %}"></a>Accessories</li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="#"><span>Camera & Photo</span></a>
-                                                <ul class="submenu-item ">
-                                                    <li><a href="#">Digital Cameras</a></li>
-                                                </ul>
+                                             <li>
+                                                <img src="{% static 'assets/images/category-8.jpg' %}" alt="">
                                             </li>
                                         </ul> <!-- sub menu -->
                                     </li>
                                     <ul>
-                                    <li class="menu-item"><a href="#">Smartphone</a></li>
+                                    <li class="menu-item"><a target="_blank" href="https://m.me/seetech20">Maintenance</a></li>
 
                                 </ul> <!-- menu content -->
                             </div> <!-- header menu vertical -->
@@ -254,42 +278,10 @@
                                             <span>{{ request.user|cart_item_count }}</span>
                                         </a>
                                         <div class="mini-cart">
-                                            <ul class="cart-items">
-                                                <li>
-                                                    <div class="single-cart-item d-flex">
-                                                        {% for order_item in object.items.all %}
-                                                        <div class="cart-item-thumb">
-                                                            <a href="single-product.html"><img src="{{ order_item.image.url }}" alt="product"></a>
-                                                            <span class="product-quantity">{{ order_item.quantity }}</span>
-                                                        </div>
-                                                        <div class="cart-item-content media-body">
-                                                            <h5 class="product-name"><a href="single-product.html">{{ order_item.item.title }}</a></h5>
-                                                            <span class="product-price">{{ order_item.item.price }}</span>
-                                                            <a href="#" class="product-close"><i class="fal fa-times"></i></a>
-                                                        </div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="price_content">
-                                                {% if object.get_total %}
-                                                <div class="cart-subtotals">
-                                                    <div class="products price_inline">
-                                                        <span class="label">Subtotal</span>
-                                                        <span class="value">{{ object.get_total }}</span>
-                                                    </div>
-                                                    <div class="shipping price_inline">
-                                                        <span class="label">Shipping</span>
-                                                        <span class="value">???</span>
-                                                    </div>
-                                                </div>
-                                                <div class="cart-total price_inline">
-                                                    <span class="label">Total</span>
-                                                    <span class="value">€37.80</span>
-                                                </div>
-                                                {% endif %}
-                                            </div> <!-- price content -->
                                             <div class="checkout text-center">
+                                                <button type="button" class="btn btn-info"><a href="{% url 'core:order-summary' %}" style="color: white;">Show My order</a></button>
+                                                <br>
+                                                <hr>
                                                 <a href="{% url 'core:checkout' %}" class="main-btn">Checkout</a>
                                             </div>
                                         </div> <!-- mini cart -->
@@ -327,19 +319,43 @@
 
                     <ul class="menu-content">
                         <li class="menu-item-has-children">
-                            <a href="#">Laptop <i class="fal fa-chevron-right"></i></a>
+                            <a href="#">Electronics <i class="fal fa-chevron-right"></i></a>
                             <ul class="sub-menu">
                                 <li class="menu-item-has-children">
-                                    <a href="#"><span>Hot Categories</span></a>
+                                    <a href="#"><span>PC & Laptop</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a href="#">Dresses</a></li>
+                                        <li><a target="_blank" href="{% url 'core:C' %}">Computer</a></li>
+                                        <li><a target="_blank" href="{% url 'core:LP' %}">Laptop</a></li>
+                                        <li><a target="_blank" href="{% url 'core:PS' %}">Printer & Scanner</a></li>
+                                        <li><a target="_blank" href="{% url 'core:CA' %}">PC accessories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#"><span>Outerwear & Jackets</span></a>
+                                    <a href="#"><span>Phone & Tablet</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a href="#">Basic Jackets</a></li>
+                                        <li><a target="_blank" href="{% url 'core:P' %}">Phone</a></li>
+                                        <li><a target="_blank" href="{% url 'core:TB' %}">Tablet</a></li>
+                                        <li><a target="_blank" href="{% url 'core:PA' %}">Phone accessories</a></li>
+
                                     </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#"><span>TVs & Receivers</span></a>
+                                    <ul class="submenu-item ">
+                                        <li><a target="_blank" href="{% url 'core:T' %}">Television</a></li>
+                                        <li><a target="_blank" href="{% url 'core:SR' %}">Satellite Receiver</a></li>
+                                        <li><a target="_blank" href="{% url 'core:TA' %}">TV accessories</a></li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="{% url 'core:AD' %}">Audio</a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="{% url 'core:CM' %}">Camera</a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="{% url 'core:PJ' %}">Projector</a>
                                 </li>
                                 <li>
                                     <img src="{% static 'assets/images/banner-image.png' %}" alt="">
@@ -347,29 +363,27 @@
                             </ul> <!-- sub menu -->
                         </li>
                         <li class="menu-item-has-children">
-                            <a href="#">Computer <i class="fal fa-chevron-right"></i></a>
+                            <a href="#">Watches & Jewellery <i class="fal fa-chevron-right"></i></a>
                             <ul class="sub-menu">
                                 <li class="menu-item-has-children">
-                                    <a href="#"><span>Accessories & Parts</span></a>
+                                    <a href="#"><span>Men</span></a>
                                     <ul class="submenu-item">
-                                        <li><a href="#">Cables & Adapters</a></li>
+                                        <li><a target="_blank" href="{% url 'core:MW' %}">Watches</a></li>
+                                        <li><a target="_blank" href="{% url 'core:MA' %}">accessories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#"><span>Audio & Video</span></a>
+                                    <a href="#"><span>Women</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a href="#">Televisions</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#"><span>Camera & Photo</span></a>
-                                    <ul class="submenu-item ">
-                                        <li><a href="#">Digital Cameras</a></li>
+                                        <li><a target="_blank" href="{% url 'core:WW' %}">Watches</a></li>
+                                        <li><a target="_blank" href="{% url 'core:WA' %}">accessories</a></li>
                                     </ul>
                                 </li>
                             </ul> <!-- sub menu -->
                         </li>
-                        <li><a href="#">Smartphone</a></li>
+                        <li>
+                            <a target="_blank" href="https://m.me/seetech20">Maintenance</a>
+                        </li>
                     </ul> <!-- menu content -->
                 </div> <!-- mobile main menu -->
             </div> <!-- mobile off canvas menu -->
