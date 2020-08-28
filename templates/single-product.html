@@ -41,20 +41,13 @@
                         </div>
                         <h2 class="product-title">{{ object.title }}</h2>
                         <div class="review-rating d-flex flex-wrap">
-<!--                             <ul class="rating">
-                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                                <li class="rating-on"><i class="fas fa-star"></i></li>
-                            </ul> -->
                         </div>
                         <div class="product-price">
                             {% if object.discount_price %}
-                              <span class="price-sale">{{ object.discount_price }}</span>
-                                <span class="regular-price">{{ object.price }}</span>
+                              <span class="price-sale">{{ object.discount_price }} L.E.</span>
+                                <span class="regular-price">{{ object.price }} L.E.</span>
                             {% else %}
-                              <span class="regular-price">{{ object.price }}</span>
+                              <span class="regular-price">{{ object.price }} L.E.</span>
                             {% endif %}
                         </div>
                         <div class="product-basic-info">
@@ -62,6 +55,14 @@
                                 <span class="title">Category :</span>
                                 <span class="value"><a href="#">{{ object.get_category_display }}</a></span>
                             </div>
+                            {% if object.discount_price %}
+                                <div class="single-info">
+                                    <span class="title">Discount :</span>
+                                    <span class="value">Saving {{ object.get_discount_percentage }}% ⚡</span>
+                                {% endif %}
+                                </div>
+
+
                             <div class="single-info">
                                 <span class="title"> Product Code :</span>
                                 <span class="value">{{ object.slug }}</span>

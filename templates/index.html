@@ -13,7 +13,9 @@
             <div class="slider-content-wrapper">
                 <div class="container-fluid custom-container">
                     <div class="slider-content">
-                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">{{ elitebookghp.get_category_display }}</h4>
+                        {% if item.discount_price %}
+                            <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Saving {{ elitebookghp.get_discount_percentage }}% ⚡</h4>
+                        {% endif %}
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ elitebookghp.title }} </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
                         <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ elitebookghp.get_absolute_url }}">Buy Now</a>
@@ -28,7 +30,9 @@
             <div class="slider-content-wrapper">
                 <div class="container-fluid custom-container">
                    <div class="slider-content">
-                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">{{ hpprodesktower.get_category_display }}</h4>
+                        {% if item.discount_price %}
+                            <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">Saving {{ hpprodesktower.get_discount_percentage }}% ⚡</h4>
+                        {% endif %}
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ hpprodesktower.title }} </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
                         <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ hpprodesktower.get_absolute_url }}">Buy Now</a>
@@ -197,12 +201,20 @@
                                         <a href="{{ first.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ first.image.url }}" alt="product">
                                         </a>
+                                        {% if first.discount_price %}
+                                           <span class="discount-product">-{{ first.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <p>{{ first.get_category_display }}</p>
                                         <h4 class="product-title"><a href="{{ first.slug }}">{{ first.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ first.price }}</span>
+                                            {% if first.discount_price %}
+                                                <span class="regular-price">{{ first.price }} L.E.</span>
+                                                <span class="price-sale">{{ first.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ first.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -212,11 +224,19 @@
                                         <a href="{{ second.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ second.image.url }}" alt="product">
                                         </a>
+                                        {% if second.discount_price %}
+                                           <span class="discount-product">-{{ second.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ second.get_absolute_url }}">{{ second.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ second.price }}</span>
+                                            {% if second.discount_price %}
+                                                <span class="regular-price">{{ second.price }} L.E.</span>
+                                                <span class="price-sale">{{ second.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ second.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -227,13 +247,19 @@
                                         <a href="{{ third.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ third.image.url }}" alt="product">
                                         </a>
-                                        <!-- <span class="discount-product">-12%</span> -->
+                                        {% if third.discount_price %}
+                                           <span class="discount-product">-{{ third.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ third.get_absolute_url }}">{{ third.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="regular-price ">{{ third.price }}</span>
-                                            <!-- <span class="price-sale">€21.90</span> -->
+                                            {% if third.discount_price %}
+                                                <span class="regular-price">{{ third.price }} L.E.</span>
+                                                <span class="price-sale">{{ third.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ third.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -243,11 +269,19 @@
                                         <a href="{{ forth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ forth.image.url }}" alt="product">
                                         </a>
+                                        {% if forth.discount_price %}
+                                           <span class="discount-product">-{{ forth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ forth.get_absolute_url }}">{{ forth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ forth.price }}</span>
+                                            {% if forth.discount_price %}
+                                                <span class="regular-price">{{ forth.price }} L.E.</span>
+                                                <span class="price-sale">{{ forth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ forth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -258,11 +292,19 @@
                                         <a href="{{ fifth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ fifth.image.url }}" alt="product">
                                         </a>
+                                        {% if fifth.discount_price %}
+                                           <span class="discount-product">-{{ fifth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ fifth.get_absolute_url }}">{{ fifth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ fifth.price }}</span>
+                                            {% if fifth.discount_price %}
+                                                <span class="regular-price">{{ fifth.price }} L.E.</span>
+                                                <span class="price-sale">{{ fifth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ fifth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -272,12 +314,19 @@
                                         <a href="{{ sixth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ sixth.image.url }}" alt="product">
                                         </a>
-                                        <!-- <span class="discount-product">-12%</span> -->
+                                        {% if sixth.discount_price %}
+                                           <span class="discount-product">-{{ sixth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ sixth.get_absolute_url }}">{{ sixth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ sixth.price }}</span>
+                                            {% if sixth.discount_price %}
+                                                <span class="regular-price">{{ sixth.price }} L.E.</span>
+                                                <span class="price-sale">{{ sixth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ sixth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -288,11 +337,19 @@
                                         <a href="{{ seventh.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ seventh.image.url }}" alt="product">
                                         </a>
+                                        {% if item.discount_price %}
+                                           <span class="discount-product">-{{ seventh.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ seventh.get_absolute_url }}">{{ seventh.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ seventh.price }}</span>
+                                            {% if seventh.discount_price %}
+                                                <span class="regular-price">{{ seventh.price }} L.E.</span>
+                                                <span class="price-sale">{{ seventh.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ seventh.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -302,11 +359,19 @@
                                         <a href="{{ eighth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ eighth.image.url }}" alt="product">
                                         </a>
+                                        {% if eighth.discount_price %}
+                                           <span class="discount-product">-{{ eighth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ eighth.get_absolute_url }}">{{ eighth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ eighth.price }}</span>
+                                            {% if eighth.discount_price %}
+                                                <span class="regular-price">{{ eighth.price }} L.E.</span>
+                                                <span class="price-sale">{{ eighth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ eighth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -317,11 +382,19 @@
                                         <a href="{{ ninth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ ninth.image.url }}" alt="product">
                                         </a>
+                                        {% if ninth.discount_price %}
+                                           <span class="discount-product">-{{ ninth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ ninth.get_absolute_url }}">{{ ninth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ ninth.price }}</span>
+                                            {% if ninth.discount_price %}
+                                                <span class="regular-price">{{ ninth.price }} L.E.</span>
+                                                <span class="price-sale">{{ ninth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ ninth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -331,11 +404,19 @@
                                         <a href="{{ tenth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ tenth.image.url }}" alt="product">
                                         </a>
+                                        {% if tenth.discount_price %}
+                                           <span class="discount-product">-{{ tenth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ tenth.get_absolute_url }}">{{ tenth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ tenth.price }}</span>
+                                            {% if tenth.discount_price %}
+                                                <span class="regular-price">{{ tenth.price }} L.E.</span>
+                                                <span class="price-sale">{{ tenth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ tenth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -346,11 +427,19 @@
                                         <a href="{{ eleventh.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ eleventh.image.url }}" alt="product">
                                         </a>
+                                        {% if eleventh.discount_price %}
+                                           <span class="discount-product">-{{ eleventh.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ eleventh.get_absolute_url }}">{{ eleventh.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ eleventh.price }}</span>
+                                            {% if eleventh.discount_price %}
+                                                <span class="regular-price">{{ eleventh.price }} L.E.</span>
+                                                <span class="price-sale">{{ eleventh.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ eleventh.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -360,11 +449,19 @@
                                         <a href="{{ twelfth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ twelfth.image.url }}" alt="product">
                                         </a>
+                                        {% if twelfth.discount_price %}
+                                           <span class="discount-product">-{{ twelfth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ twelfth.get_absolute_url }}">{{ twelfth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ twelfth.price }}</span>
+                                            {% if twelfth.discount_price %}
+                                                <span class="regular-price">{{ twelfth.price }} L.E.</span>
+                                                <span class="price-sale">{{ twelfth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ twelfth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -375,11 +472,19 @@
                                         <a href="{{ thirteenth.get_absolute_url }}">
                                             <img height="250" width="250" class="first-image" src="{{ thirteenth.image.url }}" alt="product">
                                         </a>
+                                        {% if thirteenth.discount_price %}
+                                           <span class="discount-product">-{{ thirteenth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ thirteenth.get_absolute_url }}">{{ thirteenth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ thirteenth.price }}</span>
+                                            {% if thirteenth.discount_price %}
+                                                <span class="regular-price">{{ thirteenth.price }} L.E.</span>
+                                                <span class="price-sale">{{ thirteenth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ thirteenth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
@@ -389,11 +494,19 @@
                                         <a href="{{ fourteenth.get_absolute_url }}">
                                             <img class="first-image" height="250" width="250" src="{{ fourteenth.image.url }}" alt="product">
                                         </a>
+                                        {% if fourteenth.discount_price %}
+                                           <span class="discount-product">-{{ fourteenth.get_discount_percentage }}%</span>
+                                        {% endif %}
                                     </div>
                                     <div class="product-content">
                                         <h4 class="product-title"><a href="{{ fourteenth.get_absolute_url }}">{{ fourteenth.title }}</a></h4>
                                         <div class="product-price">
-                                            <span class="price-sale">{{ fourteenth.price }}</span>
+                                            {% if fourteenth.discount_price %}
+                                                <span class="regular-price">{{ fourteenth.price }} L.E.</span>
+                                                <span class="price-sale">{{ fourteenth.discount_price }} L.E.</span>
+                                            {% else %}
+                                                <span class="price-sale">{{ fourteenth.price }} L.E.</span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
