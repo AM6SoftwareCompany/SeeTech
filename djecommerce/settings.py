@@ -13,6 +13,9 @@ import os
 from pathlib import Path
 from decouple import config
 
+import django_heroku
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -142,3 +145,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STRIPE_PUBLIC_KEY = "config('STRIPE_LIVE_PUBLIC_KEY')"
 STRIPE_SECRET_KEY = "config('STRIPE_LIVE_SECRET_KEY')"
+
+django_heroku.settings(locals())
