@@ -558,6 +558,7 @@ class WAView(ListView):
 
 
 def index(request):
+    '''
     all = Item.objects.all()
     first = all[0]
     second = all[1]
@@ -573,6 +574,7 @@ def index(request):
     twelfth = all[11]
     thirteenth = all[12]
     fourteenth = all[13]
+    '''
 
     elitebookghp = Item.objects.filter(slug='hp-elitebook-745-g3')[0]
     hpprodesktower = Item.objects.filter(slug='hp-prodesk-600-g1-tower')[0]
@@ -580,11 +582,14 @@ def index(request):
     template_name = 'index.html'
 
     user = request.user
+    '''
     context = {'first':first, "second":second,"third":third, 'forth':forth, 'fifth':fifth,
     'sixth':sixth, 'seventh':seventh, 'eighth':eighth, 'ninth':ninth, 'tenth':tenth,
      'eleventh':eleventh, 'twelfth':twelfth, 'thirteenth':thirteenth,'fourteenth':fourteenth,
      'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower
      }
+    '''
+    context = {'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower}
 
     return render(request, template_name, context)
 

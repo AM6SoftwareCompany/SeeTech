@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% comment %}
     <!--====== Slider Part Start ======-->
 
     <section class="slider-area slider-active">
@@ -35,6 +36,41 @@
                         {% endif %}
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ hpprodesktower.title }} </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ url 'shop' }}">Buy Now</a>
+                </div> <!-- container -->
+            </div>
+        </div> <!-- single slider -->
+    </section>
+
+    <!--====== Slider Part Ends ======-->
+{% endcomment %}
+
+<!--====== Slider Part Start ======-->
+
+    <section class="slider-area slider-active">
+        <div class="single-slider">
+            <div class="slider-image">
+                <img src="{% static 'assets/images/slider-1.jpg' %}" alt="slider">
+            </div>
+            <div class="slider-content-wrapper">
+                <div class="container-fluid custom-container">
+                    <div class="slider-content">
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>HP EliteBook 745 G3 </span></h1>
+                        <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{url 'core:shop' }}">Buy Now</a>
+                    </div>
+                </div> <!-- container -->
+            </div>
+        </div> <!-- single slider -->
+        <div class="single-slider">
+            <div class="slider-image">
+                <img src="{% static 'assets/images/slider-2.jpg' %}" alt="slider">
+            </div>
+            <div class="slider-content-wrapper">
+                <div class="container-fluid custom-container">
+                   <div class="slider-content">
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>HP ProDesk 600 G1 Tower </span></h1>
+                        <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
                         <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ hpprodesktower.get_absolute_url }}">Buy Now</a>
                 </div> <!-- container -->
             </div>
@@ -42,7 +78,6 @@
     </section>
 
     <!--====== Slider Part Ends ======-->
-
  
     <!--====== Category Part Start ======-->
 
@@ -114,7 +149,7 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="single-category text-center">
-                        <a target="_blank" href="https://m.me/seetech20">
+                        <a target="_blank" href="https://m.me/seetech1">
                             <img src="{% static 'assets/images/category-2.jpg' %}" alt="category">
                             <p>Maintenance</p>
                         </a>
@@ -188,6 +223,7 @@
 
     <!--====== Category Part Ends ======-->
 
+{% comment %}
     <!--====== Product Part Start ======-->
 
     <section class="product-area pt-100 pb-100">
@@ -530,6 +566,7 @@
             </div> <!-- tab content -->
         </div> <!-- container -->
     </section>
+{% endcomment %}
 
 
     <!--====== Testimonial Part Start ======-->
