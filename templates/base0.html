@@ -70,7 +70,7 @@
                         <div class="header-menu-nav">
                             <ul class="menu-nav">
                             {% if request.user.is_authenticated %}
-                                <li><a href="#">Account</a></li>
+                                <!-- <li><a href="#">Account</a></li> -->
                                 <li><a href="{% url 'account_logout' %}">Logout</a></li>
                             {% else %}
                                 <li><a href="{% url 'account_login' %}">Sign in</a></li>
@@ -233,6 +233,7 @@
                                 <ul class="menu-content">
                                     <li class="active"><a href="{% url 'core:home' %}">Home </a></li>
                                     <li><a href="#footer">Contact Us</a></li>
+                                    <li><a target="_blank" href="https://m.me/seetech1">Maintenance</a></li>
                                 </ul>
                             </div> <!-- header horizontal menu -->
                         </div>
@@ -266,7 +267,7 @@
 
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 {% if request.user.is_authenticated %}
-                                                    <li><a href="#">Account</a></li>
+                                                    <!-- <li><a href="#">Account</a></li> -->
                                                     <li><a href="{% url 'account_logout' %}">Logout</a></li>
                                                 {% else %}
                                                     <li><a href="{% url 'account_login' %}">Sign in</a></li>
@@ -315,10 +316,12 @@
                 </div>
 
                 <div class="mobile-main-menu">
+<!-- 
                     <ul class="menu-content">
                         <li class="active"><a href="{% url 'core:home' %}">Home </a></li>
                         <li><a href="#footer">Contact</a></li>
                     </ul>
+                     -->
 
                     <ul class="menu-content">
                         <li class="menu-item-has-children">
@@ -327,38 +330,38 @@
                                 <li class="menu-item-has-children">
                                     <a href="#"><span>PC & Laptop</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a target="_blank" href="{% url 'core:C' %}">Computer</a></li>
-                                        <li><a target="_blank" href="{% url 'core:LP' %}">Laptop</a></li>
-                                        <li><a target="_blank" href="{% url 'core:PS' %}">Printer & Scanner</a></li>
-                                        <li><a target="_blank" href="{% url 'core:CA' %}">PC accessories</a></li>
+                                        <li><a href="{% url 'core:C' %}">Computer</a></li>
+                                        <li><a href="{% url 'core:LP' %}">Laptop</a></li>
+                                        <li><a href="{% url 'core:PS' %}">Printer & Scanner</a></li>
+                                        <li><a href="{% url 'core:CA' %}">PC accessories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#"><span>Phone & Tablet</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a target="_blank" href="{% url 'core:P' %}">Phone</a></li>
-                                        <li><a target="_blank" href="{% url 'core:TB' %}">Tablet</a></li>
-                                        <li><a target="_blank" href="{% url 'core:PA' %}">Phone accessories</a></li>
+                                        <li><a href="{% url 'core:P' %}">Phone</a></li>
+                                        <li><a href="{% url 'core:TB' %}">Tablet</a></li>
+                                        <li><a href="{% url 'core:PA' %}">Phone accessories</a></li>
 
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#"><span>TVs & Receivers</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a target="_blank" href="{% url 'core:T' %}">Television</a></li>
-                                        <li><a target="_blank" href="{% url 'core:SR' %}">Satellite Receiver</a></li>
-                                        <li><a target="_blank" href="{% url 'core:TA' %}">TV accessories</a></li>
+                                        <li><a href="{% url 'core:T' %}">Television</a></li>
+                                        <li><a href="{% url 'core:SR' %}">Satellite Receiver</a></li>
+                                        <li><a href="{% url 'core:TA' %}">TV accessories</a></li>
 
                                     </ul>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="{% url 'core:AD' %}">Audio</a>
+                                    <a href="{% url 'core:AD' %}">Audio</a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="{% url 'core:CM' %}">Camera</a>
+                                    <a href="{% url 'core:CM' %}">Camera</a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="{% url 'core:PJ' %}">Projector</a>
+                                    <a href="{% url 'core:PJ' %}">Projector</a>
                                 </li>
                                 <li>
                                     <img src="{% static 'assets/images/banner-image.png' %}" alt="">
@@ -371,16 +374,19 @@
                                 <li class="menu-item-has-children">
                                     <a href="#"><span>Men</span></a>
                                     <ul class="submenu-item">
-                                        <li><a target="_blank" href="{% url 'core:MW' %}">Watches</a></li>
-                                        <li><a target="_blank" href="{% url 'core:MA' %}">accessories</a></li>
+                                        <li><a href="{% url 'core:MW' %}">Watches</a></li>
+                                        <li><a href="{% url 'core:MA' %}">accessories</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#"><span>Women</span></a>
                                     <ul class="submenu-item ">
-                                        <li><a target="_blank" href="{% url 'core:WW' %}">Watches</a></li>
-                                        <li><a target="_blank" href="{% url 'core:WA' %}">accessories</a></li>
+                                        <li><a href="{% url 'core:WW' %}">Watches</a></li>
+                                        <li><a href="{% url 'core:WA' %}">accessories</a></li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <img src="{% static 'assets/images/category-8.jpg' %}" alt="">
                                 </li>
                             </ul> <!-- sub menu -->
                         </li>
