@@ -36,7 +36,7 @@
                         {% endif %}
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>{{ hpprodesktower.title }} </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ url 'shop' }}">Buy Now</a>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ hpprodesktower.get_absolute_url }}">Buy Now</a>
                 </div> <!-- container -->
             </div>
         </div> <!-- single slider -->
@@ -57,7 +57,7 @@
                     <div class="slider-content">
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>HP EliteBook 745 G3 </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{url 'core:shop' }}">Buy Now</a>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{% url 'core:shop' %}">Buy Now</a>
                     </div>
                 </div> <!-- container -->
             </div>
@@ -71,7 +71,7 @@
                    <div class="slider-content">
                         <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>HP ProDesk 600 G1 Tower </span></h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">The best devices, the best options, new and advanced capabilities ❤🔥.</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{{ hpprodesktower.get_absolute_url }}">Buy Now</a>
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="{% url 'core:shop' %}">Buy Now</a>
                 </div> <!-- container -->
             </div>
         </div> <!-- single slider -->
