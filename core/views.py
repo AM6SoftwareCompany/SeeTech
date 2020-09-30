@@ -574,11 +574,14 @@ def index(request):
     twelfth = all[11]
     thirteenth = all[12]
     fourteenth = all[13]
-    '''
+    
 
     elitebookghp = Item.objects.filter(slug='hp-elitebook-745-g3')[0]
     hpprodesktower = Item.objects.filter(slug='hp-prodesk-600-g1-tower')[0]
 
+    context = {'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower}
+
+    '''
     template_name = 'index.html'
 
     user = request.user
@@ -589,8 +592,7 @@ def index(request):
      'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower
      }
     '''
-    context = {'elitebookghp':elitebookghp, 'hpprodesktower':hpprodesktower}
-
+    context = {}
     return render(request, template_name, context)
 
 
