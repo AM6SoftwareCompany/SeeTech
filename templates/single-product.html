@@ -23,15 +23,33 @@
     <section class="single-product-page pt-20">
         <div class="container-fluid custom-container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="single-product-image mt-30">
                         <div class="product-single-image">
                             <div class="single-image">
                                 <img src="{{ object.image.url }}" alt="{{ object.slug }}">
                             </div>
-                    </div> <!-- single product image -->
+                            <div class="single-image">
+                                <img src="{{ object.image1.url }}" alt="{{ object.slug }}">
+                            </div>
+                            <div class="single-image">
+                                <img src="{{ object.image2.url }}" alt="{{ object.slug }}">
+                            </div>
+                            <div class="single-image">
+                                <img src="{{ object.image3.url }}" alt="{{ object.slug }}">
+                            </div>
+                    </div>
+                    <div class="product-single-thumb-image">
+                            <ul class="product-single-thumb">
+                                <li><img src="{{ object.image.url }}" alt="product"></li>
+                                <li><img src="{{ object.image2.url }}" alt="{{ object.slug }}"></li>
+                                <li><img src="{{ object.image2.url }}" alt="{{ object.slug }}"></li>
+                                <li><img src="{{ object.image3.url }}" alt="{{ object.slug }}"></li>
+                            </ul>
+                        </div>
+                     <!-- single product image -->
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="single-product-content mt-30">
                         <div class="tags d-flex">
                             <span class="tag-title">Tags:</span>
