@@ -29,17 +29,17 @@
                             <div class="single-image">
                                 <img src="{{ object.image.url }}" alt="{{ object.slug }}">
                             </div>
-                            {% if object.image %}
+                            {% if object.image1 %}
                             <div class="single-image">
                                 <img src="{{ object.image1.url }}" alt="{{ object.slug }}">
                             </div>
                             {% endif %}
-                            {% if object.image %}
+                            {% if object.image2 %}
                             <div class="single-image">
                                 <img src="{{ object.image2.url }}" alt="{{ object.slug }}">
                             </div>
                             {% endif %}
-                            {% if object.image %}
+                            {% if object.image3 %}
                             <div class="single-image">
                                 <img src="{{ object.image3.url }}" alt="{{ object.slug }}">
                             </div>
@@ -48,13 +48,13 @@
                     <div class="product-single-thumb-image">
                             <ul class="product-single-thumb">
                                 <li><img src="{{ object.image.url }}" alt="{{ object.slug }}"></li>
-                                {% if object.image %}
+                                {% if object.image1 %}
                                 <li><img src="{{ object.image2.url }}" alt="{{ object.slug }}"></li>
                                 {% endif %}
-                                {% if object.image %}
+                                {% if object.image2 %}
                                 <li><img src="{{ object.image2.url }}" alt="{{ object.slug }}"></li>
                                 {% endif %}
-                                {% if object.image %}
+                                {% if object.image3 %}
                                 <li><img src="{{ object.image3.url }}" alt="{{ object.slug }}"></li>
                                 {% endif %}
                             </ul>
